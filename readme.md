@@ -54,7 +54,7 @@ $ db.disliked_shops.createIndex({"created_at":1},{expireAfterSeconds:7200})
 ```sh 
 $ mongorestore --db shops shops/
 ```
-
+## Finally
 ```sh 
 $ npm install
 $ npm run dev
@@ -68,3 +68,7 @@ $ php -S localhost:8000 -t public
 ```sh
 127.0.0.1:8000
 ```
+> If you face some issues with location in firefox
+1. go to about:config
+1. search for `geo.wifi.uri`
+1. change it to `https://location.services.mozilla.com/v1/geolocate?key=test`

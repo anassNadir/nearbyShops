@@ -11224,7 +11224,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 var WriteCookieToken = function WriteCookieToken(token) {
     var now = new Date();
-    now.setHours(now.getHours() + 2);
+    now.setHours(now.getHours() + 24);
     document.cookie = 'auth_token = ' + token + '; expires = ' + now.toUTCString() + ';path=/';
 };
 var killCookieToken = function killCookieToken() {
@@ -11763,85 +11763,85 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_vue_snotify__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
 var PageNotFound = {
-  template: '\n  <div class="col-md-10 offset-md-1">\n            <div class="alert alert-warning text-center" role="alert">\n                <h1>Page Not Found</h1>\n            </div>\n        </div>'
+    template: '\n  <div class="col-md-10 offset-md-1">\n            <div class="alert alert-danger text-center" role="alert">\n                <h1>Page Not Found</h1>\n            </div>\n        </div>'
 };
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-  mode: 'history',
-  props: true,
-  routes: [{
-    path: '/',
-    redirect: {
-      name: 'SignIn'
+    mode: 'history',
+    props: true,
+    routes: [{
+        path: '/',
+        redirect: {
+            name: 'SignIn'
+        }
+    }, {
+        path: '/sign-in',
+        name: 'SignIn',
+        component: __WEBPACK_IMPORTED_MODULE_5__components_signInComponent_vue___default.a,
+        meta: {
+            requiresAuth: false
+        }
+    }, {
+        path: '/sign-up',
+        name: 'SignUp',
+        component: __WEBPACK_IMPORTED_MODULE_6__components_signUpComponent_vue___default.a,
+        meta: {
+            requiresAuth: false
+        }
+    }, {
+        path: '/nearby-shops',
+        name: 'Nearby',
+        component: __WEBPACK_IMPORTED_MODULE_7__components_nearbyShopsComponent_vue___default.a,
+        meta: {
+            requiresAuth: true
+        }
+    }, {
+        path: '/preferred-shops',
+        name: 'Preferred',
+        component: __WEBPACK_IMPORTED_MODULE_8__components_preferredShopsComponent_vue___default.a,
+        meta: {
+            requiresAuth: true
+        }
+    }, {
+        path: '*',
+        name: 'Page404',
+        component: PageNotFound
+    }],
+    scrollBehavior: function scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition;
+        } else {
+            return {
+                x: 0,
+                y: 0
+            };
+        }
     }
-  }, {
-    path: '/sign-in',
-    name: 'SignIn',
-    component: __WEBPACK_IMPORTED_MODULE_5__components_signInComponent_vue___default.a,
-    meta: {
-      requiresAuth: false
-    }
-  }, {
-    path: '/sign-up',
-    name: 'SignUp',
-    component: __WEBPACK_IMPORTED_MODULE_6__components_signUpComponent_vue___default.a,
-    meta: {
-      requiresAuth: false
-    }
-  }, {
-    path: '/nearby-shops',
-    name: 'Nearby',
-    component: __WEBPACK_IMPORTED_MODULE_7__components_nearbyShopsComponent_vue___default.a,
-    meta: {
-      requiresAuth: true
-    }
-  }, {
-    path: '/preferred-shops',
-    name: 'Preferred',
-    component: __WEBPACK_IMPORTED_MODULE_8__components_preferredShopsComponent_vue___default.a,
-    meta: {
-      requiresAuth: true
-    }
-  }, {
-    path: '*',
-    name: 'Page404',
-    component: PageNotFound
-  }],
-  scrollBehavior: function scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else {
-      return {
-        x: 0,
-        y: 0
-      };
-    }
-  }
 });
 router.beforeEach(function (to, from, next) {
-  if (to.matched.some(function (route) {
-    return route.meta.requiresAuth;
-  }) && !__WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].getters.isLoggedIn) {
-    next({
-      name: 'SignIn'
-    });
-    return;
-  }
-  if ((to.path === '/sign-in' || to.path === '/sign-up') && __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].getters.isLoggedIn) {
-    next({
-      name: 'Nearby'
-    });
-    return;
-  }
-  next();
+    if (to.matched.some(function (route) {
+        return route.meta.requiresAuth;
+    }) && !__WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].getters.isLoggedIn) {
+        next({
+            name: 'SignIn'
+        });
+        return;
+    }
+    if ((to.path === '/sign-in' || to.path === '/sign-up') && __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].getters.isLoggedIn) {
+        next({
+            name: 'Nearby'
+        });
+        return;
+    }
+    next();
 });
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-  el: '#app',
-  router: router,
-  store: __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */],
-  components: {
-    App: __WEBPACK_IMPORTED_MODULE_3__App_vue___default.a
-  },
-  template: '<App/>'
+    el: '#app',
+    router: router,
+    store: __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */],
+    components: {
+        App: __WEBPACK_IMPORTED_MODULE_3__App_vue___default.a
+    },
+    template: '<App/>'
 });
 
 /***/ }),
@@ -40070,7 +40070,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n[v-cloak] {\n  display: none;\n}\n.app-loader {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.app-loader .loader {\n  border: 16px solid #f3f3f3;\n  border-top: 16px solid #3498db;\n  border-radius: 50%;\n  width: 120px;\n  height: 120px;\n  -webkit-animation: spin .7s linear infinite;\n          animation: spin .7s linear infinite;\n}\n@-webkit-keyframes spin {\nfrom {\n    -webkit-transform: scale(1) rotate(0deg);\n            transform: scale(1) rotate(0deg);\n}\nto {\n    -webkit-transform: scale(1) rotate(360deg);\n            transform: scale(1) rotate(360deg);\n}\n}\n@keyframes spin {\nfrom {\n    -webkit-transform: scale(1) rotate(0deg);\n            transform: scale(1) rotate(0deg);\n}\nto {\n    -webkit-transform: scale(1) rotate(360deg);\n            transform: scale(1) rotate(360deg);\n}\n}\n.route-enter-active,\n.route-leave-active {\n  -webkit-transition: opacity 1s, -webkit-transform 1s;\n  transition: opacity 1s, -webkit-transform 1s;\n  transition: opacity 1s, transform 1s;\n  transition: opacity 1s, transform 1s, -webkit-transform 1s;\n}\n.route-enter,\n.route-leave-to {\n  opacity: 0;\n  -webkit-transform: translateX(-30%);\n          transform: translateX(-30%);\n}\nbody {\n  background: #9CECFB;\n  background: -webkit-gradient(linear, left top, right top, from(#0052D4), color-stop(#65C7F7), to(#9CECFB));\n  background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);\n}\n.content {\n  position: relative;\n  overflow: hidden;\n  padding-top: 6rem;\n  padding-bottom: 6rem;\n}\n@media (max-width: 767px) {\n.content {\n    padding-top: 4.5rem;\n    padding-bottom: 4.5rem;\n}\n}\n\n", ""]);
+exports.push([module.i, "\n[v-cloak] {\n    display: none;\n}\n.app-loader {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.app-loader .loader {\n    border: 16px solid #f3f3f3;\n    border-top: 16px solid #3498db;\n    border-radius: 50%;\n    width: 120px;\n    height: 120px;\n    -webkit-animation: spin .7s linear infinite;\n            animation: spin .7s linear infinite;\n}\n@-webkit-keyframes spin {\nfrom {\n        -webkit-transform: scale(1) rotate(0deg);\n                transform: scale(1) rotate(0deg);\n}\nto {\n        -webkit-transform: scale(1) rotate(360deg);\n                transform: scale(1) rotate(360deg);\n}\n}\n@keyframes spin {\nfrom {\n        -webkit-transform: scale(1) rotate(0deg);\n                transform: scale(1) rotate(0deg);\n}\nto {\n        -webkit-transform: scale(1) rotate(360deg);\n                transform: scale(1) rotate(360deg);\n}\n}\n.route-enter-active,\n.route-leave-active {\n    -webkit-transition: opacity 1s, -webkit-transform 1s;\n    transition: opacity 1s, -webkit-transform 1s;\n    transition: opacity 1s, transform 1s;\n    transition: opacity 1s, transform 1s, -webkit-transform 1s;\n}\n.route-enter,\n.route-leave-to {\n    opacity: 0;\n    -webkit-transform: translateX(-30%);\n            transform: translateX(-30%);\n}\nbody {\n    background: #9CECFB;\n    background: -webkit-gradient(linear, left top, right top, from(#0052D4), color-stop(#65C7F7), to(#9CECFB));\n    background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);\n}\n.content {\n    position: relative;\n    overflow: hidden;\n    padding-top: 6rem;\n    padding-bottom: 6rem;\n}\n@media (max-width: 767px) {\n.content {\n        padding-top: 4.5rem;\n        padding-bottom: 4.5rem;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -40135,15 +40135,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'App',
-  computed: {
-    isLoading: function isLoading() {
-      return this.$store.state.isLoading;
+    name: 'App',
+    computed: {
+        isLoading: function isLoading() {
+            return this.$store.state.isLoading;
+        }
+    },
+    components: {
+        'header-component': __WEBPACK_IMPORTED_MODULE_0__components_headerComponent_vue___default.a
     }
-  },
-  components: {
-    'header-component': __WEBPACK_IMPORTED_MODULE_0__components_headerComponent_vue___default.a
-  }
 });
 
 /***/ }),
@@ -40230,21 +40230,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Header',
-  computed: {
-    isLoggedIn: function isLoggedIn() {
-      return this.$store.getters.isLoggedIn;
-    }
-  },
-  methods: {
-    logout: function logout() {
-      var _this = this;
+    name: 'Header',
+    computed: {
+        isLoggedIn: function isLoggedIn() {
+            return this.$store.getters.isLoggedIn;
+        }
+    },
+    methods: {
+        logout: function logout() {
+            var _this = this;
 
-      this.$store.dispatch('logout').then(function () {
-        _this.$router.push('/sign-in');
-      });
+            this.$store.dispatch('logout').then(function () {
+                _this.$router.push('/sign-in');
+            });
+        }
     }
-  }
 });
 
 /***/ }),
@@ -40279,10 +40279,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link",
-                        attrs: {
-                          to: { name: "SignIn" },
-                          "class-active": "active"
-                        }
+                        attrs: { to: { name: "SignIn" } }
                       },
                       [_vm._v("Sign In")]
                     )
@@ -40300,10 +40297,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link",
-                        attrs: {
-                          to: { name: "SignUp" },
-                          "class-active": "active"
-                        }
+                        attrs: { to: { name: "SignUp" } }
                       },
                       [_vm._v("Sign Up")]
                     )
@@ -40321,10 +40315,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link",
-                        attrs: {
-                          to: { name: "Nearby" },
-                          "class-active": "active"
-                        }
+                        attrs: { to: { name: "Nearby" } }
                       },
                       [_vm._v("Nearby Shops")]
                     )
@@ -40342,10 +40333,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link",
-                        attrs: {
-                          to: { name: "Preferred" },
-                          "class-active": "active"
-                        }
+                        attrs: { to: { name: "Preferred" } }
                       },
                       [_vm._v("My preferred Shops")]
                     )
@@ -40882,6 +40870,7 @@ var script$2 = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.extend({
     },
     created: function () {
         var _this = this;
+        console.log(this.toast);
         this.$snotify.emitter.$on('toastChanged', function (toast) {
             if (_this.toast.id === toast.id) {
                 _this.initToast();
@@ -41988,7 +41977,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.slide-fade-enter-active {\n   -webkit-transition: all .3s ease;\n   transition: all .3s ease;\n}\n.slide-fade-leave-active {\n   -webkit-transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter,\n .slide-fade-leave-to {\n   -webkit-transform: translateX(10px);\n           transform: translateX(10px);\n   opacity: 0;\n}\n.card-signin {\n   border: 0;\n   border-radius: 1rem;\n   -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);\n           box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);\n}\n.card-signin .card-title {\n   margin-bottom: 2rem;\n   font-weight: 300;\n   font-size: 1.5rem;\n}\n.card-signin .card-body {\n   padding: 2rem;\n}\n.form-signin {\n   width: 100%;\n}\n.form-signin .btn {\n   font-size: 80%;\n   border-radius: 5rem;\n   letter-spacing: .1rem;\n   font-weight: bold;\n   padding: 1rem;\n   -webkit-transition: all 0.2s;\n   transition: all 0.2s;\n}\n.form-label-group {\n   position: relative;\n   margin-bottom: 1rem;\n}\n.form-label-group input {\n   border-radius: 2rem;\n}\n.form-label-group>input,\n .form-label-group>label {\n   padding: .75rem 1.5rem;\n}\n.form-label-group>label {\n   position: absolute;\n   top: 0;\n   left: 0;\n   display: block;\n   width: 100%;\n   margin-bottom: 0;\n   line-height: 1.5;\n   color: #495057;\n   border: 1px solid transparent;\n   border-radius: .25rem;\n   -webkit-transition: all .1s ease-in-out;\n   transition: all .1s ease-in-out;\n}\n.form-label-group .error-msg {\n   font-size: 15px;\n   font-weight: 600;\n   color: red;\n   padding: 0 10px;\n}\n.form-label-group input::-webkit-input-placeholder {\n   color: transparent;\n}\n.form-label-group input:-ms-input-placeholder {\n   color: transparent;\n}\n.form-label-group input::-ms-input-placeholder {\n   color: transparent;\n}\n.form-label-group input::placeholder {\n   color: transparent;\n}\n.form-label-group input:not(:placeholder-shown) {\n   padding-top: calc(.75rem + .75rem * (2 / 3));\n   padding-bottom: calc(.75rem / 3);\n}\n.form-label-group input:not(:placeholder-shown)~label {\n   padding-top: calc(.75rem / 3);\n   padding-bottom: calc(.75rem / 3);\n   font-size: 12px;\n   color: #777;\n}\n\n", ""]);
+exports.push([module.i, "\n.slide-fade-enter-active {\n    -webkit-transition: all .3s ease;\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    -webkit-transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter,\n.slide-fade-leave-to {\n    -webkit-transform: translateX(10px);\n            transform: translateX(10px);\n    opacity: 0;\n}\n.card-signin {\n    border: 0;\n    border-radius: 1rem;\n    -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);\n            box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);\n}\n.card-signin .card-title {\n    margin-bottom: 2rem;\n    font-weight: 300;\n    font-size: 1.5rem;\n}\n.card-signin .card-body {\n    padding: 2rem;\n}\n.form-signin {\n    width: 100%;\n}\n.form-signin .btn {\n    font-size: 80%;\n    border-radius: 5rem;\n    letter-spacing: .1rem;\n    font-weight: bold;\n    padding: 1rem;\n    -webkit-transition: all 0.2s;\n    transition: all 0.2s;\n}\n.form-label-group {\n    position: relative;\n    margin-bottom: 1rem;\n}\n.form-label-group input {\n    border-radius: 2rem;\n}\n.form-label-group>input,\n.form-label-group>label {\n    padding: .75rem 1.5rem;\n}\n.form-label-group>label {\n    position: absolute;\n    top: 0;\n    left: 0;\n    display: block;\n    width: 100%;\n    margin-bottom: 0;\n    line-height: 1.5;\n    color: #495057;\n    border: 1px solid transparent;\n    border-radius: .25rem;\n    -webkit-transition: all .1s ease-in-out;\n    transition: all .1s ease-in-out;\n}\n.form-label-group .error-msg {\n    font-size: 15px;\n    font-weight: 600;\n    color: red;\n    padding: 0 10px;\n}\n.form-label-group input::-webkit-input-placeholder {\n    color: transparent;\n}\n.form-label-group input:-ms-input-placeholder {\n    color: transparent;\n}\n.form-label-group input::-ms-input-placeholder {\n    color: transparent;\n}\n.form-label-group input::placeholder {\n    color: transparent;\n}\n.form-label-group input:not(:placeholder-shown) {\n    padding-top: calc(.75rem + .75rem * (2 / 3));\n    padding-bottom: calc(.75rem / 3);\n}\n.form-label-group input:not(:placeholder-shown)~label {\n    padding-top: calc(.75rem / 3);\n    padding-bottom: calc(.75rem / 3);\n    font-size: 12px;\n    color: #777;\n}\n\n", ""]);
 
 // exports
 
@@ -42037,135 +42026,135 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SignIn',
-  data: function data() {
-    return {
-      isLoading: false,
-      formData: {
-        email: {
-          value: '',
-          required: 1,
-          msgs: {
-            required: 'email field is required',
-            valid: 'please enter a valid email address'
-          },
-          msg: 'email field is required',
-          valid: 1
-        },
-        password: {
-          value: '',
-          required: 1,
-          msg: 'password field is required',
-          valid: 1
-        }
-      }
-    };
-  },
-
-  methods: {
-    validateForm: function validateForm() {
-      var _this = this;
-
-      var emailInControl = document.querySelector('.form-label-group input[name="email"]');
-      var passInControl = document.querySelector('.form-label-group input[name="password"]');
-
-      var validatePass = function validatePass() {
-        if (!_this.formData.password.value) {
-          _this.formData.password.valid = !1;
-        } else {
-          _this.formData.password.valid = 1;
-        }
-      };
-      var validateEmail = function validateEmail() {
-        if (!_this.formData.email.value) {
-          _this.formData.email.valid = !1;
-          _this.formData.email.msg = _this.formData.email.msgs.required;
-        } else if (!validEmail(_this.formData.email.value)) {
-          _this.formData.email.valid = !1;
-          _this.formData.email.msg = _this.formData.email.msgs.valid;
-        } else {
-          _this.formData.email.valid = 1;
-        }
-      };
-      var validEmail = function validEmail(email) {
-        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-      };
-      passInControl.addEventListener('blur', validatePass);
-      passInControl.addEventListener('keyup', validatePass);
-      emailInControl.addEventListener('blur', validateEmail);
-      emailInControl.addEventListener('keyup', validateEmail);
+    name: 'SignIn',
+    data: function data() {
+        return {
+            isLoading: false,
+            formData: {
+                email: {
+                    value: '',
+                    required: 1,
+                    msgs: {
+                        required: 'email field is required',
+                        valid: 'please enter a valid email address'
+                    },
+                    msg: 'email field is required',
+                    valid: 1
+                },
+                password: {
+                    value: '',
+                    required: 1,
+                    msg: 'password field is required',
+                    valid: 1
+                }
+            }
+        };
     },
-    login: function login() {
-      var _this2 = this;
 
-      this.isLoading = true;
-      var errors = 0;
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+    methods: {
+        validateForm: function validateForm() {
+            var _this = this;
 
-      try {
-        for (var _iterator = Object.entries(this.formData)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var _ref = _step.value;
+            var emailInControl = document.querySelector('.form-label-group input[name="email"]');
+            var passInControl = document.querySelector('.form-label-group input[name="password"]');
 
-          var _ref2 = _slicedToArray(_ref, 2);
+            var validatePass = function validatePass() {
+                if (!_this.formData.password.value) {
+                    _this.formData.password.valid = !1;
+                } else {
+                    _this.formData.password.valid = 1;
+                }
+            };
+            var validateEmail = function validateEmail() {
+                if (!_this.formData.email.value) {
+                    _this.formData.email.valid = !1;
+                    _this.formData.email.msg = _this.formData.email.msgs.required;
+                } else if (!validEmail(_this.formData.email.value)) {
+                    _this.formData.email.valid = !1;
+                    _this.formData.email.msg = _this.formData.email.msgs.valid;
+                } else {
+                    _this.formData.email.valid = 1;
+                }
+            };
+            var validEmail = function validEmail(email) {
+                var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            };
+            passInControl.addEventListener('blur', validatePass);
+            passInControl.addEventListener('keyup', validatePass);
+            emailInControl.addEventListener('blur', validateEmail);
+            emailInControl.addEventListener('keyup', validateEmail);
+        },
+        login: function login() {
+            var _this2 = this;
 
-          var key = _ref2[0];
-          var content = _ref2[1];
+            this.isLoading = true;
+            var errors = 0;
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
 
-          if (content.required && !content.value) {
-            console.log(content.value);
-            content.valid = !1;
-            errors++;
-          } else if (!content.valid) {
-            errors++;
-          }
+            try {
+                for (var _iterator = Object.entries(this.formData)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var _ref = _step.value;
+
+                    var _ref2 = _slicedToArray(_ref, 2);
+
+                    var key = _ref2[0];
+                    var content = _ref2[1];
+
+                    if (content.required && !content.value) {
+                        console.log(content.value);
+                        content.valid = !1;
+                        errors++;
+                    } else if (!content.valid) {
+                        errors++;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            if (errors > 0) {
+                this.isLoading = false;
+                return !1;
+            }
+
+            var formData = {
+                email: this.formData.email.value,
+                password: this.formData.password.value
+            };
+
+            this.$store.dispatch('authenticate', formData).then(function () {
+                _this2.$router.push('/nearby-shops');
+            }).catch(function (res) {
+                _this2.isLoading = false;
+                _this2.$snotify.warning(res.error, {
+                    showProgressBar: true,
+                    closeOnClick: true,
+                    timeout: 3000
+                });
+            });
         }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
+    },
+    mounted: function mounted() {
+        var _this3 = this;
 
-      if (errors > 0) {
-        this.isLoading = false;
-        return !1;
-      }
-
-      var formData = {
-        email: this.formData.email.value,
-        password: this.formData.password.value
-      };
-
-      this.$store.dispatch('authenticate', formData).then(function () {
-        _this2.$router.push('/nearby-shops');
-      }).catch(function (res) {
-        _this2.isLoading = false;
-        _this2.$snotify.warning(res.error, {
-          showProgressBar: true,
-          closeOnClick: true,
-          timeout: 3000
-        });
-      });
+        setTimeout(function () {
+            _this3.validateForm();
+        }, 1200);
     }
-  },
-  mounted: function mounted() {
-    var _this3 = this;
-
-    setTimeout(function () {
-      _this3.validateForm();
-    }, 1200);
-  }
 });
 
 /***/ }),
@@ -42442,7 +42431,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.slide-fade-enter-active {\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n}\n.slide-fade-leave-active {\n  -webkit-transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter,\n.slide-fade-leave-to {\n  -webkit-transform: translateX(10px);\n          transform: translateX(10px);\n  opacity: 0;\n}\n.card-signin {\n  border: 0;\n  border-radius: 1rem;\n  -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);\n          box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);\n}\n.card-signin .card-title {\n  margin-bottom: 2rem;\n  font-weight: 300;\n  font-size: 1.5rem;\n}\n.card-signin .card-body {\n  padding: 2rem;\n}\n.form-signin {\n  width: 100%;\n}\n.form-signin .btn {\n  font-size: 80%;\n  border-radius: 5rem;\n  letter-spacing: .1rem;\n  font-weight: bold;\n  padding: 1rem;\n  -webkit-transition: all 0.2s;\n  transition: all 0.2s;\n}\n.form-label-group {\n  position: relative;\n  margin-bottom: 1rem;\n}\n.form-label-group input {\n  border-radius: 2rem;\n}\n.form-label-group>input,\n.form-label-group>label {\n  padding: .75rem 1.5rem;\n}\n.form-label-group>label {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: block;\n  width: 100%;\n  margin-bottom: 0;\n  line-height: 1.5;\n  color: #495057;\n  border: 1px solid transparent;\n  border-radius: .25rem;\n  -webkit-transition: all .1s ease-in-out;\n  transition: all .1s ease-in-out;\n}\n.form-label-group .error-msg {\n  font-size: 15px;\n  font-weight: 600;\n  color: red;\n  padding: 0 10px;\n}\n.form-label-group input::-webkit-input-placeholder {\n  color: transparent;\n}\n.form-label-group input:-ms-input-placeholder {\n  color: transparent;\n}\n.form-label-group input::-ms-input-placeholder {\n  color: transparent;\n}\n.form-label-group input::placeholder {\n  color: transparent;\n}\n.form-label-group input:not(:placeholder-shown) {\n  padding-top: calc(.75rem + .75rem * (2 / 3));\n  padding-bottom: calc(.75rem / 3);\n}\n.form-label-group input:not(:placeholder-shown)~label {\n  padding-top: calc(.75rem / 3);\n  padding-bottom: calc(.75rem / 3);\n  font-size: 12px;\n  color: #777;\n}\n\n", ""]);
+exports.push([module.i, "\n.slide-fade-enter-active {\n    -webkit-transition: all .3s ease;\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    -webkit-transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter,\n.slide-fade-leave-to {\n    -webkit-transform: translateX(10px);\n            transform: translateX(10px);\n    opacity: 0;\n}\n.card-signin {\n    border: 0;\n    border-radius: 1rem;\n    -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);\n            box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);\n}\n.card-signin .card-title {\n    margin-bottom: 2rem;\n    font-weight: 300;\n    font-size: 1.5rem;\n}\n.card-signin .card-body {\n    padding: 2rem;\n}\n.form-signin {\n    width: 100%;\n}\n.form-signin .btn {\n    font-size: 80%;\n    border-radius: 5rem;\n    letter-spacing: .1rem;\n    font-weight: bold;\n    padding: 1rem;\n    -webkit-transition: all 0.2s;\n    transition: all 0.2s;\n}\n.form-label-group {\n    position: relative;\n    margin-bottom: 1rem;\n}\n.form-label-group input {\n    border-radius: 2rem;\n}\n.form-label-group>input,\n.form-label-group>label {\n    padding: .75rem 1.5rem;\n}\n.form-label-group>label {\n    position: absolute;\n    top: 0;\n    left: 0;\n    display: block;\n    width: 100%;\n    margin-bottom: 0;\n    line-height: 1.5;\n    color: #495057;\n    border: 1px solid transparent;\n    border-radius: .25rem;\n    -webkit-transition: all .1s ease-in-out;\n    transition: all .1s ease-in-out;\n}\n.form-label-group .error-msg {\n    font-size: 15px;\n    font-weight: 600;\n    color: red;\n    padding: 0 10px;\n}\n.form-label-group input::-webkit-input-placeholder {\n    color: transparent;\n}\n.form-label-group input:-ms-input-placeholder {\n    color: transparent;\n}\n.form-label-group input::-ms-input-placeholder {\n    color: transparent;\n}\n.form-label-group input::placeholder {\n    color: transparent;\n}\n.form-label-group input:not(:placeholder-shown) {\n    padding-top: calc(.75rem + .75rem * (2 / 3));\n    padding-bottom: calc(.75rem / 3);\n}\n.form-label-group input:not(:placeholder-shown)~label {\n    padding-top: calc(.75rem / 3);\n    padding-bottom: calc(.75rem / 3);\n    font-size: 12px;\n    color: #777;\n}\n\n", ""]);
 
 // exports
 
@@ -42499,193 +42488,193 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SignUp',
-  data: function data() {
-    return {
-      loading: false,
-      formData: {
-        email: {
-          value: '',
-          msgs: {
-            required: 'email field is required',
-            valid: 'please enter a valid email address'
-          },
-          msg: 'email field is required',
-          valid: 1
-        },
-        password: {
-          value: '',
-          msg: 'password field is required',
-          valid: 1
-        },
-        pwConfirmation: {
-          value: '',
-          msgs: {
-            required: 'password confirmation field is required',
-            mismatch: 'password does not match the confirm password'
-          },
-          msg: 'password confirmation field is required',
-          valid: 1
-        }
+    name: 'SignUp',
+    data: function data() {
+        return {
+            loading: false,
+            formData: {
+                email: {
+                    value: '',
+                    msgs: {
+                        required: 'email field is required',
+                        valid: 'please enter a valid email address'
+                    },
+                    msg: 'email field is required',
+                    valid: 1
+                },
+                password: {
+                    value: '',
+                    msg: 'password field is required',
+                    valid: 1
+                },
+                pwConfirmation: {
+                    value: '',
+                    msgs: {
+                        required: 'password confirmation field is required',
+                        mismatch: 'password does not match the confirm password'
+                    },
+                    msg: 'password confirmation field is required',
+                    valid: 1
+                }
 
-      }
-    };
-  },
-
-  methods: {
-    validateForm: function validateForm() {
-      var _this = this;
-
-      var emailControl = document.querySelector('.form-label-group input[name="email"]');
-      var passControl = document.querySelector('.form-label-group input[name="password"]');
-      var confirmPassControl = document.querySelector('.form-label-group input[name="confirm-password"]');
-
-      var validatePass = function validatePass() {
-        if (!_this.formData.password.value) {
-          _this.formData.password.valid = !1;
-        } else {
-          _this.formData.password.valid = 1;
-        }
-        if (_this.formData.pwConfirmation.value && _this.formData.password.value !== _this.formData.pwConfirmation.value) {
-          _this.formData.pwConfirmation.valid = !1;
-          _this.formData.pwConfirmation.msg = _this.formData.pwConfirmation.msgs.mismatch;
-        } else if (!_this.formData.pwConfirmation.valid && _this.formData.password.value === _this.formData.pwConfirmation.value) {
-          _this.formData.pwConfirmation.valid = 1;
-        }
-      };
-      var validateConfirmPass = function validateConfirmPass() {
-        if (_this.formData.password.value && !_this.formData.pwConfirmation.value) {
-          _this.formData.pwConfirmation.valid = !1;
-          _this.formData.pwConfirmation.msg = _this.formData.pwConfirmation.msgs.required;
-        } else if (_this.formData.password.value !== _this.formData.pwConfirmation.value) {
-          _this.formData.pwConfirmation.valid = !1;
-          _this.formData.pwConfirmation.msg = _this.formData.pwConfirmation.msgs.mismatch;
-        } else {
-          _this.formData.pwConfirmation.valid = 1;
-        }
-      };
-      var validateEmail = function validateEmail() {
-        if (!_this.formData.email.value) {
-          _this.formData.email.valid = !1;
-          _this.formData.email.msg = _this.formData.email.msgs.required;
-        } else if (!validEmail(_this.formData.email.value)) {
-          _this.formData.email.valid = !1;
-          _this.formData.email.msg = _this.formData.email.msgs.valid;
-        } else {
-          _this.formData.email.valid = 1;
-        }
-      };
-      var validEmail = function validEmail(email) {
-        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-      };
-      passControl.addEventListener('blur', validatePass);
-      passControl.addEventListener('keyup', validatePass);
-      emailControl.addEventListener('blur', validateEmail);
-      emailControl.addEventListener('keyup', validateEmail);
-      confirmPassControl.addEventListener('blur', validateConfirmPass);
-      confirmPassControl.addEventListener('keyup', validateConfirmPass);
+            }
+        };
     },
-    register: function register() {
-      var _this2 = this;
 
-      this.loading = true;
-      var errors = 0;
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+    methods: {
+        validateForm: function validateForm() {
+            var _this = this;
 
-      try {
-        for (var _iterator = Object.entries(this.formData)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var _ref = _step.value;
+            var emailControl = document.querySelector('.form-label-group input[name="email"]');
+            var passControl = document.querySelector('.form-label-group input[name="password"]');
+            var confirmPassControl = document.querySelector('.form-label-group input[name="confirm-password"]');
 
-          var _ref2 = _slicedToArray(_ref, 2);
+            var validatePass = function validatePass() {
+                if (!_this.formData.password.value) {
+                    _this.formData.password.valid = !1;
+                } else {
+                    _this.formData.password.valid = 1;
+                }
+                if (_this.formData.pwConfirmation.value && _this.formData.password.value !== _this.formData.pwConfirmation.value) {
+                    _this.formData.pwConfirmation.valid = !1;
+                    _this.formData.pwConfirmation.msg = _this.formData.pwConfirmation.msgs.mismatch;
+                } else if (!_this.formData.pwConfirmation.valid && _this.formData.password.value === _this.formData.pwConfirmation.value) {
+                    _this.formData.pwConfirmation.valid = 1;
+                }
+            };
+            var validateConfirmPass = function validateConfirmPass() {
+                if (_this.formData.password.value && !_this.formData.pwConfirmation.value) {
+                    _this.formData.pwConfirmation.valid = !1;
+                    _this.formData.pwConfirmation.msg = _this.formData.pwConfirmation.msgs.required;
+                } else if (_this.formData.password.value !== _this.formData.pwConfirmation.value) {
+                    _this.formData.pwConfirmation.valid = !1;
+                    _this.formData.pwConfirmation.msg = _this.formData.pwConfirmation.msgs.mismatch;
+                } else {
+                    _this.formData.pwConfirmation.valid = 1;
+                }
+            };
+            var validateEmail = function validateEmail() {
+                if (!_this.formData.email.value) {
+                    _this.formData.email.valid = !1;
+                    _this.formData.email.msg = _this.formData.email.msgs.required;
+                } else if (!validEmail(_this.formData.email.value)) {
+                    _this.formData.email.valid = !1;
+                    _this.formData.email.msg = _this.formData.email.msgs.valid;
+                } else {
+                    _this.formData.email.valid = 1;
+                }
+            };
+            var validEmail = function validEmail(email) {
+                var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            };
+            passControl.addEventListener('blur', validatePass);
+            passControl.addEventListener('keyup', validatePass);
+            emailControl.addEventListener('blur', validateEmail);
+            emailControl.addEventListener('keyup', validateEmail);
+            confirmPassControl.addEventListener('blur', validateConfirmPass);
+            confirmPassControl.addEventListener('keyup', validateConfirmPass);
+        },
+        register: function register() {
+            var _this2 = this;
 
-          var key = _ref2[0];
-          var control = _ref2[1];
+            this.loading = true;
+            var errors = 0;
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
 
-          if (!control.value) {
-            control.valid = !1;
-            errors++;
-          } else if (!control.valid) {
-            errors++;
-          }
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
+            try {
+                for (var _iterator = Object.entries(this.formData)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var _ref = _step.value;
 
-      if (errors > 0) {
-        this.loading = false;
-        return !1;
-      }
-      var formData = {
-        email: this.formData.email.value,
-        password: this.formData.password.value
-      };
-      this.$store.dispatch('register', formData).then(function () {
-        _this2.$router.push('/nearby-shops');
-      }).catch(function (res) {
-        _this2.loading = false;
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
+                    var _ref2 = _slicedToArray(_ref, 2);
 
-        try {
-          for (var _iterator2 = Object.entries(res.error)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var _ref3 = _step2.value;
+                    var key = _ref2[0];
+                    var control = _ref2[1];
 
-            var _ref4 = _slicedToArray(_ref3, 2);
-
-            var _key = _ref4[0];
-            var err = _ref4[1];
-
-            if (_key === 'email') {
-              _this2.formData.email.valid = false;
-              _this2.formData.email.msg = err[0];
-            } else {
-              _this2.$snotify.warning(err[0], {
-                showProgressBar: true,
-                closeOnClick: true,
-                timeout: 3000
-              });
+                    if (!control.value) {
+                        control.valid = !1;
+                        errors++;
+                    } else if (!control.valid) {
+                        errors++;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
             }
-          }
-        } catch (err) {
-          _didIteratorError2 = true;
-          _iteratorError2 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-              _iterator2.return();
+
+            if (errors > 0) {
+                this.loading = false;
+                return !1;
             }
-          } finally {
-            if (_didIteratorError2) {
-              throw _iteratorError2;
-            }
-          }
+            var formData = {
+                email: this.formData.email.value,
+                password: this.formData.password.value
+            };
+            this.$store.dispatch('register', formData).then(function () {
+                _this2.$router.push('/nearby-shops');
+            }).catch(function (res) {
+                _this2.loading = false;
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2 = false;
+                var _iteratorError2 = undefined;
+
+                try {
+                    for (var _iterator2 = Object.entries(res.error)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                        var _ref3 = _step2.value;
+
+                        var _ref4 = _slicedToArray(_ref3, 2);
+
+                        var _key = _ref4[0];
+                        var err = _ref4[1];
+
+                        if (_key === 'email') {
+                            _this2.formData.email.valid = false;
+                            _this2.formData.email.msg = err[0];
+                        } else {
+                            _this2.$snotify.warning(err[0], {
+                                showProgressBar: true,
+                                closeOnClick: true,
+                                timeout: 3000
+                            });
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError2 = true;
+                    _iteratorError2 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                            _iterator2.return();
+                        }
+                    } finally {
+                        if (_didIteratorError2) {
+                            throw _iteratorError2;
+                        }
+                    }
+                }
+            });
         }
-      });
+    },
+    mounted: function mounted() {
+        var _this3 = this;
+
+        setTimeout(function () {
+            _this3.validateForm();
+        }, 1200);
     }
-  },
-  mounted: function mounted() {
-    var _this3 = this;
-
-    setTimeout(function () {
-      _this3.validateForm();
-    }, 1200);
-  }
 });
 
 /***/ }),
@@ -43078,6 +43067,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.getPosition().then(function (position) {
                     _this2.$store.dispatch('getNearbyShops', position.coords);
                 }).catch(function (err) {
+                    console.log(err);
                     if (err.PERMISSION_DENIED) {
                         _this2.$snotify.confirm('Please share your location to get the nearest shops', 'Share location', {
                             timeout: 0,
@@ -43146,7 +43136,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.itemPicture {\n    height: 150px;\n    width: 150px;\n    margin-bottom: 20px;\n    border: 2px solid black;\n}\n.shop-item {\n    border: 2px solid black;\n    padding: 10px;\n    text-align: center;\n    margin: 5px 0;\n}\n.btn-group-center {\n    text-align: center;\n}\n.btn-group>.btn:first-child:not(:last-child) {\n    margin-right: 10px\n}\n.shop-enter,\n.slide-leave-to {\n\topacity: 0;\n}\n.shop-enter-active {\n\t-webkit-animation: shop-in 1s ease-out;\n\t        animation: shop-in 1s ease-out;\n\t-webkit-transition: all 1s ease-out;\n\ttransition: all 1s ease-out;\n}\n@-webkit-keyframes shop-in {\nfrom {\n\t\t-webkit-transform: translateX(30px);\n\t\t        transform: translateX(30px);\n}\nto {\n\t\t-webkit-transform: translateX(0);\n\t\t        transform: translateX(0);\n}\n}\n@keyframes shop-in {\nfrom {\n\t\t-webkit-transform: translateX(30px);\n\t\t        transform: translateX(30px);\n}\nto {\n\t\t-webkit-transform: translateX(0);\n\t\t        transform: translateX(0);\n}\n}\n\n", ""]);
+exports.push([module.i, "\n.itemPicture {\n    height: 150px;\n    width: 150px;\n    margin-bottom: 20px;\n    border: 2px solid black;\n}\n.shop-item {\n    border: 2px solid black;\n    padding: 10px;\n    text-align: center;\n    margin: 5px 0;\n}\n.btn-group-center {\n    text-align: center;\n}\n.btn-group>.btn:first-child:not(:last-child) {\n    margin-right: 10px\n}\n.shop-enter,\n.slide-leave-to {\n    opacity: 0;\n}\n.shop-enter-active {\n    -webkit-animation: shop-in 1s ease-out;\n            animation: shop-in 1s ease-out;\n    -webkit-transition: all 1s ease-out;\n    transition: all 1s ease-out;\n}\n@-webkit-keyframes shop-in {\nfrom {\n        -webkit-transform: translateX(30px);\n                transform: translateX(30px);\n}\nto {\n        -webkit-transform: translateX(0);\n                transform: translateX(0);\n}\n}\n@keyframes shop-in {\nfrom {\n        -webkit-transform: translateX(30px);\n                transform: translateX(30px);\n}\nto {\n        -webkit-transform: translateX(0);\n                transform: translateX(0);\n}\n}\n\n", ""]);
 
 // exports
 
@@ -43176,49 +43166,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'ShopItem',
-  props: {
-    shop: Object,
-    isPref: Boolean
-  },
-  data: function data() {
-    return {
-      loading: false
-    };
-  },
-
-  methods: {
-    likeShop: function likeShop(shop) {
-      var _this = this;
-
-      this.loading = true;
-      this.$store.dispatch('likeShop', shop).then(function () {
-        _this.$emit('spliceShop');
-      }).catch(function (err) {
-        return console.log(err);
-      });
+    name: 'ShopItem',
+    props: {
+        shop: Object,
+        isPref: Boolean
     },
-    dislikeShop: function dislikeShop(shop) {
-      var _this2 = this;
-
-      this.loading = true;
-      this.$store.dispatch('dislikeShop', shop).then(function () {
-        _this2.$emit('spliceShop');
-      }).catch(function (err) {
-        return console.log(err);
-      });
+    data: function data() {
+        return {
+            loading: false
+        };
     },
-    removeShop: function removeShop(shop) {
-      var _this3 = this;
 
-      this.loading = true;
-      this.$store.dispatch('removeShop', shop).then(function () {
-        _this3.$emit('spliceShop');
-      }).catch(function (err) {
-        return console.log(err);
-      });
+    methods: {
+        likeShop: function likeShop(shop) {
+            var _this = this;
+
+            this.loading = true;
+            this.$store.dispatch('likeShop', shop).then(function () {
+                _this.$emit('spliceShop');
+            }).catch(function (err) {
+                return console.log(err);
+            });
+        },
+        dislikeShop: function dislikeShop(shop) {
+            var _this2 = this;
+
+            this.loading = true;
+            this.$store.dispatch('dislikeShop', shop).then(function () {
+                _this2.$emit('spliceShop');
+            }).catch(function (err) {
+                return console.log(err);
+            });
+        },
+        removeShop: function removeShop(shop) {
+            var _this3 = this;
+
+            this.loading = true;
+            this.$store.dispatch('removeShop', shop).then(function () {
+                _this3.$emit('spliceShop');
+            }).catch(function (err) {
+                return console.log(err);
+            });
+        }
     }
-  }
 });
 
 /***/ }),
@@ -43428,21 +43418,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* global _ */
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'PreferredShops',
-  components: {
-    'shop-component': __WEBPACK_IMPORTED_MODULE_0__shopItemComponent_vue___default.a
-  },
-  computed: {
-    preferredShops: function preferredShops() {
-      return this.$store.getters.preferredShops;
+    name: 'PreferredShops',
+    components: {
+        'shop-component': __WEBPACK_IMPORTED_MODULE_0__shopItemComponent_vue___default.a
     },
-    groupedShops: function groupedShops() {
-      return _.chunk(this.preferredShops, 4);
+    computed: {
+        preferredShops: function preferredShops() {
+            return this.$store.getters.preferredShops;
+        },
+        groupedShops: function groupedShops() {
+            return _.chunk(this.preferredShops, 4);
+        }
+    },
+    created: function created() {
+        this.$store.dispatch('getPreferredShops');
     }
-  },
-  created: function created() {
-    this.$store.dispatch('getPreferredShops');
-  }
 });
 
 /***/ }),
